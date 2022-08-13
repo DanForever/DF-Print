@@ -16,8 +16,6 @@ You can do things like `DF::Println("A formula: {0} + {1} = {2}", var1, var2, va
   - This may never happen, as this library is intended for microcontrollers, which typically have very little memory, I worry that this might need more resources than a library like this should need to use.
 
 ## Example
-    Serial.begin(115200);
-    
     String exampleValue1 = "Here is some text";
     int exampleValue2 = random(100);
     float exampleValue3 = 3.14;
