@@ -1,0 +1,12 @@
+# === Types ===
+
+# Let's colour the namespace the same as a class
+DF KEYWORD1
+
+# === Functions ===
+Print KEYWORD2
+Println KEYWORD2
+
+# Let's make the debug macro look like a function
+DEBUG_PRINT KEYWORD2
+DEBUG_PRINTLN KEYWORD2
