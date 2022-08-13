@@ -34,7 +34,7 @@
 
 #include <cstring>
 
-#include "DFPrintInternal.h"
+#include "DF-PrintInternal.h"
 
 namespace DF
 {
