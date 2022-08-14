@@ -32,9 +32,8 @@
 #	define DEBUG_PRINTLN(format, ...)
 #endif
 
-#include <cstring>
-
 #include "DF-PrintInternal.h"
+#include "DF-StdUtility.h"
 
 namespace DF
 {
@@ -59,8 +58,8 @@ namespace DF
 	{
 		size_t charactersPrinted = 0;
 
-		charactersPrinted += Internal::PrintTextWithArgument(format, std::forward<Arg>(arg));
-		charactersPrinted += Print(format, std::forward<Args>(args)...);
+		charactersPrinted += Internal::PrintTextWithArgument(format, DF::forward<Arg>(arg));
+		charactersPrinted += Print(format, DF::forward<Args>(args)...);
 
 		return charactersPrinted;
 	}
@@ -70,7 +69,7 @@ namespace DF
 	{
 		size_t charactersPrinted = 0;
 
-		charactersPrinted += Print(format, std::forward<Args>(args)...);
+		charactersPrinted += Print(format, DF::forward<Args>(args)...);
 
 		return charactersPrinted;
 	}
@@ -80,7 +79,7 @@ namespace DF
 	{
 		size_t charactersPrinted = 0;
 
-		charactersPrinted += Print(format, std::forward<Args>(args)...);
+		charactersPrinted += Print(format, DF::forward<Args>(args)...);
 		charactersPrinted += Serial.println("");
 		// Alternatively, could do Serial.write("\r\n"); - more efficient? Is it worth making that string be read from PROGMEM?
 

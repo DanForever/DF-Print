@@ -26,6 +26,11 @@
 
 #include <Arduino.h>
 
+// Some Arduino platform implementations do not comprehensively cover the C++ standard, so we need to use string.h instead of cstring
+#include <string.h>
+
+#include "DF-StdUtility.h"
+
 namespace DF
 {
 	namespace Internal
@@ -35,7 +40,7 @@ namespace DF
 		// Format is modified to remove the text that was printed
 		inline size_t PrintTextBeforeFirstArgumentSpecifier(const char*& format)
 		{
-			const char* argStart = std::strchr(format, '{');
+			const char* argStart = strchr(format, '{');
 
 			if (!argStart)
 			{
@@ -55,12 +60,12 @@ namespace DF
 		template <typename Arg>
 		inline size_t PrintArgumentInPlaceOfSpecifier(const char*& format, Arg&& arg)
 		{
-			const char* argEnd = std::strchr(format, '}');
+			const char* argEnd = strchr(format, '}');
 
 			if (argEnd)
 				format = argEnd + 1;
 
-			return Serial.print(std::forward<Arg>(arg));
+			return Serial.print(DF::forward<Arg>(arg));
 		}
 
 		// This will print All the text before an argument specifier (e.g. {0}),
@@ -79,7 +84,7 @@ namespace DF
 			size_t charactersPrinted = 0;
 
 			charactersPrinted += PrintTextBeforeFirstArgumentSpecifier(format);
-			charactersPrinted += PrintArgumentInPlaceOfSpecifier(format, std::forward<Arg>(arg));
+			charactersPrinted += PrintArgumentInPlaceOfSpecifier(format, DF::forward<Arg>(arg));
 			charactersPrinted += PrintTextBeforeFirstArgumentSpecifier(format);
 
 			return charactersPrinted;
